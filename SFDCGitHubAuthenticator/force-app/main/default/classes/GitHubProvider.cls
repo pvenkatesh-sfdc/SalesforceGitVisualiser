@@ -18,7 +18,7 @@ global class GitHubProvider extends DataSource.Provider {
     }
      
     override global DataSource.Connection getConnection(DataSource.ConnectionParams connectionsParams) {
-        return new SFDCGitHubConnection();
+        return new SFDC2GitHubConnection();
     }
      
 }
