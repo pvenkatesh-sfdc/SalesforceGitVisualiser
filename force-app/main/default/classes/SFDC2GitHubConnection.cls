@@ -45,8 +45,13 @@ global class SFDC2GitHubConnection extends DataSource.Connection {
 
 
     private List<Map<String, Object>> getRepositories(HttpResponse response){
+        
         List<Map<String, Object>> repositories = new List<Map<String, Object>>();
+        System.debug('number of repos: ' + ((List<Object>)JSON.deserializeUntyped(response.getBody())).size());
+        Integer cmpt = 0;
         for (Object item : (List<Object>)JSON.deserializeUntyped(response.getBody())) {
+			cmpt = cmpt+1;
+            System.debug('Adding repo nb: ' +cmpt);
             repositories.add(buildRepositoryFromJson(item));
         }
         return repositories;
@@ -90,19 +95,20 @@ global class SFDC2GitHubConnection extends DataSource.Connection {
     override global DataSource.TableResult query(DataSource.QueryContext queryContext) {
         Http httpProtocol = new Http();
         HttpRequest request = new HttpRequest();
-        String user = 'juanka588';
-        String url = 'https://api.github.com/users/' + user + '/repos?per_page=1000';
+        String user = 'KarlPatach';
+        String url = 'callout:GitHubCredentials/user/repos?per_page=1000';
         //request.setEndpoint('callout:GitHub/' + url);
         request.setEndpoint(url);
         request.setMethod('GET');
         HttpResponse response = httpProtocol.send(request);
 
+        System.debug('Response is ' + response);
         try {
             // Note: If a 4xx status code occurs when querying the GitHub API, deserializeUntyped()
             // will simply return a Map<Objects> instead of a List<Map<String, Object>>, resulting in
             // a runtime error.
             List<Map<String, Object>> repositories = getRepositories(response);
-            List<Map<String, Object>> repos = DataSource.QueryUtils.process(queryContext,repositories );
+            List<Map<String, Object>> repos = DataSource.QueryUtils.process(queryContext, repositories);
             DataSource.TableResult tableResult = DataSource.TableResult.get(queryContext, repos);
             
             return tableResult;
