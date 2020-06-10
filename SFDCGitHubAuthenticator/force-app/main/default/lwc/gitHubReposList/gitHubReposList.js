@@ -10,7 +10,5 @@ export default class GitHubReposList extends LightningElement {
 
     error;
     columns = columns;
-
-     @wire(fetchGitHubRepos)
-    gitHubRepos;
+    @wire(fetchGitHubRepos) gitHubRepos;
 }
