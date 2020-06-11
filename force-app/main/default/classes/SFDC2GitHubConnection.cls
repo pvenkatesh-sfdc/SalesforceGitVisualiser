@@ -95,14 +95,11 @@ global class SFDC2GitHubConnection extends DataSource.Connection {
     override global DataSource.TableResult query(DataSource.QueryContext queryContext) {
         Http httpProtocol = new Http();
         HttpRequest request = new HttpRequest();
-        String user = 'KarlPatach';
         String url = 'callout:GitHubCredentials/user/repos?per_page=1000';
-        //request.setEndpoint('callout:GitHub/' + url);
         request.setEndpoint(url);
         request.setMethod('GET');
         HttpResponse response = httpProtocol.send(request);
 
-        System.debug('Response is ' + response);
         try {
             // Note: If a 4xx status code occurs when querying the GitHub API, deserializeUntyped()
             // will simply return a Map<Objects> instead of a List<Map<String, Object>>, resulting in
