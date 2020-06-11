@@ -117,8 +117,8 @@
     <description>GitHub Repos</description>
     <enableFeeds>false</enableFeeds>
     <enableLicensing>false</enableLicensing>
-    <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <externalDataSource>Repo</externalDataSource>
     <externalName>GitHub Repos</externalName>
     <label>GitHub Repos</label>
