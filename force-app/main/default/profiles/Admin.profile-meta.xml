@@ -5,10 +5,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>GitHubProvider2</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>SFDC2GitHubConnection</apexClass>
         <enabled>true</enabled>
     </classAccesses>

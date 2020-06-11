@@ -5,5 +5,5 @@
     <label>Repo</label>
     <principalType>Anonymous</principalType>
     <protocol>NoAuthentication</protocol>
-    <type>GitHubProvider2</type>
+    <type>GitHubProvider</type>
 </ExternalDataSource>
